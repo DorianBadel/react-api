@@ -1,38 +1,27 @@
 import React from 'react'
 //import { useMyQueryQuery } from '../utils/__generated__/graphql'
 import {Spinner} from "react-bootstrap";
+import { useQuery} from '@apollo/client';
+import MainPage from '../components/MainPage'
+import FriendsSection from '../components/FriendsSection';
+import {ThisUser} from '../api/queries';
 
-import { useQuery, gql} from '@apollo/client';
-
-const MyQuery = gql`
-  query MyQuery {
-    test {
-      ID
-      password
-      username
-    }
-  }
-`;
-
-
+let id = 1;
 export const Page = () => {
-  const {loading, data, error} = useQuery(MyQuery);
+  const {loading, data, error} = useQuery(ThisUser(id));
 
-  return <div>
-    <h2>not poo</h2>
+  return (
+  <>
     {
       loading ?
-      <Spinner animation="border"/> :
-      data.test.map(({ ID, password, username}:{ID: number,password: string, username: string}) => (
-        <div key={ID}>
-          <h3>{username}</h3>
-          <br />
-          <b>About this location:</b>
-          <p>{password}</p>
-          <br />
-        </div>
-      ))
+      <Spinner animation="border"/> : !error ? 
+        <section>
+          <MainPage name ={data.user[0].Username}/>
+          <FriendsSection ID={id}/>
+        </section>
+      : <h1> ERROR - MyQuery</h1>
     }
-    <h3>after poo</h3>
-  </div>
+    <Spinner animation="grow" size="sm" />
+  </>
+  );
 }
