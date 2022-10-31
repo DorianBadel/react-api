@@ -37,3 +37,31 @@ export function ListOfFriends(id:number){
 
   return LOFQuery;
 }
+
+export const RegisterInput = gql`
+  input RegisterInput {
+    username: String,
+    password: String,
+    confirmationPassword: String
+  }
+`;
+
+export const LoginInput = gql`
+  input LoginInput {
+    username: String,
+    password: String
+  }
+`;
+
+export const Mutus = gql`
+  type Mutation {
+    registerUser(registerInput: RegisterInput): User,
+    loginUser(loginInput: LoginInput): User 
+  }
+`
+
+export const Brutus = gql`
+  type Query{
+    user(id: ID!): User
+  }
+`

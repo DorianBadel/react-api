@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.1",
+    "@apollo/react-hooks": "^4.0.0",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.10.11",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,9 +18,12 @@
     "bootstrap": "^5.2.2",
     "graphql": "^16.6.0",
     "graphql-fetcher": "^0.0.1",
+    "graphql-tag": "^2.12.6",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "treblle": "^1.2.1",
     "web-vitals": "^2.1.4"

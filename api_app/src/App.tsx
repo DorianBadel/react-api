@@ -1,18 +1,20 @@
 import React from 'react';
-import {ApolloProvider} from '@apollo/client';
-import {client} from './api/api';
 import './App.css';
-import { Page } from './pages/page';
-import Navigation from './components/Navigation';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+
+import { Page as Home } from './Pages/Home/Home';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
 
 function App() {
   return (
-    <div className="app">
-      <ApolloProvider client={client}>
-        <Navigation/>
-        <Page/>
-      </ApolloProvider>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/Login" element={<Login/>}/>
+        <Route path="/Register" element={<Register/>}/>
+      </Routes>
+    </Router>
     
   );
 }

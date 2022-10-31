@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import {NavLink, Link} from "react-router-dom"
+
+
 import './nav.css'
 
 
@@ -12,7 +15,8 @@ function Navigation() {
     <nav>
     <div className="nav-center">
       <div className="nav-header">
-        <img src="./assets/logo.svg" alt="logo" className="logo"/>
+        <Link to="/">
+        </Link>
         <button className="nav-toggle" onClick={toggle}>
           x
           <i className="fas fa-bars"></i>
@@ -21,16 +25,22 @@ function Navigation() {
 
       <ul className={isToggled ? "links show-links" : "links"}>
         <li>
-          <a href="index.html">home</a>
+          <Link to="/">
+            Home
+          </Link>
         </li>
         <li>
           <a href="about.html">about</a>
         </li>
         <li>
-          <a href="projects.html">projects</a>
+        <NavLink  to="/register">
+          Register
+        </NavLink>
         </li>
         <li>
-          <a href="contact.html">contact</a>
+        <NavLink  to="/login">
+          Login
+        </NavLink>
         </li>
       </ul>
       <ul className="social-icons">
