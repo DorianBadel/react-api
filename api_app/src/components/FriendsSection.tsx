@@ -109,15 +109,20 @@ function FriendsSection({ ID }: { ID: number }) {
 			) : error ? (
 				<span className="error"> ERROR </span>
 			) : (
-				SortDates().map((fr: Friend) => (
-					<div key={fr.friend.ID}>
-						{fr.Nickname ? fr.Nickname : fr.friend.Username}
-						<p>
-							{getAge(fr.friend.ID)} {fr.friend.date_of_birth.split("-")[0]}{" "}
-							{getYear(fr.friend.ID)}
-						</p>
-					</div>
-				))
+				<div className="friendBDCardContainer">
+					{SortDates().map((fr: Friend) => (
+						<div key={fr.friend.ID} className="friendBDCard">
+							<span className="Name">
+								{fr.Nickname ? fr.Nickname : fr.friend.Username}
+							</span>
+							<p>
+								<span className="Age">{getAge(fr.friend.ID)}</span>
+								{/*{fr.friend.date_of_birth.split("-")[0]}{" "}*/}
+								<span className="Date">{getYear(fr.friend.ID)}</span>
+							</p>
+						</div>
+					))}
+				</div>
 			)}
 		</div>
 	);
