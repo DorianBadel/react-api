@@ -5,7 +5,7 @@ export const TestQuery = gql`
 		test {
 			ID
 			password
-			username
+			name
 		}
 	}
 `;
