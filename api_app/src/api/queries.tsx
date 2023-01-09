@@ -13,8 +13,8 @@ export const TestQuery = gql`
 export function ThisUser(id: number) {
 	const ThisUserQuery = gql`
     query GetUsername {
-      user(where: {ID: {_eq: ${id}}}) {
-        Username
+      users(where: {ID: {_eq: ${id}}}) {
+        name
       }
     }
   `;
@@ -24,11 +24,11 @@ export function ThisUser(id: number) {
 export function ListOfFriends(id: number) {
 	const LOFQuery = gql`
     query GetFL($uid: Int = ${id}) {
-      firends(where: {UID: {_eq: $uid}}) {
-        Nickname
+      friends(where: {UID: {_eq: $uid}}) {
+        nickname
         friend {
           ID
-          Username
+          name
           date_of_birth
         }
       }

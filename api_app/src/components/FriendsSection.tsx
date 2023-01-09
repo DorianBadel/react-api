@@ -3,24 +3,23 @@ import React from "react";
 import { ListOfFriends, ThisUser } from "../api/queries";
 
 type Friend = {
-	Nickname: string;
+	nickname: string;
 	friend: {
 		ID: number;
-		Username: string;
+		name: string;
 		date_of_birth: string;
 	};
 };
 
 function FriendsSection({ ID }: { ID: number }) {
 	const { loading, data, error } = useQuery(ListOfFriends(ID));
-
 	const td = new Date();
 	const today =
 		td.getFullYear() + "-" + (td.getMonth() + 1) + "-" + td.getDate();
 
 	function getAge(id: number): number {
 		//Return actual year from DB
-		const db: Friend = data.firends.find((obj: Friend) => {
+		const db: Friend = data.friends.find((obj: Friend) => {
 			return obj.friend.ID === id;
 		});
 
@@ -31,22 +30,31 @@ function FriendsSection({ ID }: { ID: number }) {
 
 	function getYear(id: number): string {
 		//Return actual year from DB
-		const db: Friend = data.firends.find((obj: Friend) => {
+		const db: Friend = data.friends.find((obj: Friend) => {
 			return obj.friend.ID === id;
 		});
 
 		return db.friend.date_of_birth;
 	}
 
-	function compare(dateOne: string, dateTwo: string): boolean {
-		const t1: string[] = dateOne.split("-");
-		const t2: string[] = dateTwo.split("-");
+	function compareDates(
+		dateOne: string,
+		dateTwo: string,
+		compareYear: boolean = false
+	): boolean {
+		const t1: number[] = dateOne.split("-").map((a) => Number(a));
+		const t2: number[] = dateTwo.split("-").map((a) => Number(a));
 
+		if (compareYear) {
+			if (t2[0] > t1[0]) return true;
+			else if (t2[0] !== t1[0]) return false;
+		}
 		if (t2[1] > t1[1]) {
 			return true;
 		} else if (t2[1] === t1[1]) {
-			if (t2[2] >= t1[2]) return true;
-			else return false;
+			if (t2[2] >= t1[2]) {
+				return true;
+			} else return false;
 		}
 		return false;
 	}
@@ -59,10 +67,10 @@ function FriendsSection({ ID }: { ID: number }) {
 		} else newDate = td.getFullYear() + 1 + "-" + temp[1] + "-" + temp[2];
 
 		const newFriend: Friend = {
-			Nickname: fr.Nickname,
+			nickname: fr.nickname,
 			friend: {
 				ID: fr.friend.ID,
-				Username: fr.friend.Username,
+				name: fr.friend.name,
 				date_of_birth: newDate,
 			},
 		};
@@ -70,30 +78,17 @@ function FriendsSection({ ID }: { ID: number }) {
 		return newFriend;
 	}
 
-	function compareWithYear(dateOne: string, dateTwo: string): boolean {
-		const t1: string[] = dateOne.split("-");
-		const t2: string[] = dateTwo.split("-");
-
-		if (t2[0] > t1[0]) return true;
-		else if (t2[0] === t1[0])
-			if (t2[1] > t1[1]) {
-				return true;
-			} else if (t2[1] === t1[1]) {
-				if (t2[2] >= t1[2]) return true;
-				else return false;
-			}
-		return false;
-	}
-
 	function SortDates() {
 		let newDates: Friend[] = [];
 		if (!loading) {
-			data.firends.map((fr: Friend) => {
-				newDates.push(replace(compare(today, fr.friend.date_of_birth), fr));
+			data.friends.map((fr: Friend) => {
+				newDates.push(
+					replace(compareDates(today, fr.friend.date_of_birth), fr)
+				);
 			});
 
 			newDates.sort((a: Friend, b: Friend) => {
-				if (compareWithYear(a.friend.date_of_birth, b.friend.date_of_birth))
+				if (compareDates(a.friend.date_of_birth, b.friend.date_of_birth, true))
 					return -1;
 				else return 1;
 			});
@@ -107,13 +102,13 @@ function FriendsSection({ ID }: { ID: number }) {
 			{loading ? (
 				<p>loading...</p>
 			) : error ? (
-				<span className="error"> ERROR </span>
+				<span className="error"> ERROR - {error.message} </span>
 			) : (
 				<div className="friendBDCardContainer">
 					{SortDates().map((fr: Friend) => (
 						<div key={fr.friend.ID} className="friendBDCard">
 							<span className="Name">
-								{fr.Nickname ? fr.Nickname : fr.friend.Username}
+								{fr.nickname ? fr.nickname : fr.friend.name}
 							</span>
 							<p>
 								<span className="Age">{getAge(fr.friend.ID)}</span>
