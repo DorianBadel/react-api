@@ -1,4 +1,3 @@
-import React from "react";
 import MainBody from "../../components/MainBody";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../api/context/authContext";
@@ -8,6 +7,9 @@ import { useMutation } from "@apollo/react-hooks";
 import { gql } from "graphql-tag";
 import { useNavigate } from "react-router-dom";
 
+//TODO choose between bootrap and MUI
+// i assume bootstrap is easier to keep because this will be replaced by Auth0
+//yarn remove @mui/material
 // import { TextField, Button, Container, Stack, Alert } from "@mui/material";
 
 const LOGIN_USER = gql`
@@ -54,20 +56,19 @@ function Login() {
         <Stack spacing={2} paddingBottom={2}>
           <TextField label="Username" name="username" onChange={onChange} />
           <TextField label="Password" name="password" onChange={onChange} />
-        </Stack>
-        {/* {errors.map(function(error){
+        </Stack> */}
+      {/* {errors.map(function(error){
           return (
             <Alert severity="error">
               {error.message}
             </Alert>
           )
-        })} }
+        })} */}
 
-        <Button variant="contained" onClick={onSubmit}>
+      {/* <Button variant="contained" onClick={onSubmit}>
           Login
         </Button>
       </Container> */}
-      <div>login</div>
     </MainBody>
   );
 }

@@ -1,0 +1,59 @@
+@use "Global" as g;
+
+.friends {
+  &_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 1rem 0 1rem;
+    max-width: 1200px;
+  }
+
+  &_card {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+
+    box-shadow: 5px 5px #102a42;
+    border: g.$color-secondary solid 2px;
+    border-color: g.$color-secondary;
+    border-radius: 10px;
+    background-color: g.$color-tertiary;
+    transition: 1s all;
+    padding-bottom: 5px;
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: -10px -10px #5aaceb;
+
+      transition: 1s all;
+    }
+
+    &__name {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    &__age {
+      grid-area: 1/2/3/3;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    &__date {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: g.$color-text-secondary;
+    }
+  }
+}
