@@ -9,21 +9,21 @@ import MainBody from "../../components/MainBody";
 
 let id = 7;
 export const Page = () => {
-	const { loading, data, error } = useQuery(ThisUser(id));
+  const { loading, data, error } = useQuery(ThisUser(id));
 
-	return (
-		<MainBody>
-			{loading ? (
-				<Spinner animation="border" />
-			) : !error ? (
-				<section>
-					<MainPage name={data.users[0].name} />
-					<FriendsSection ID={id} />
-				</section>
-			) : (
-				<h1> ERROR - {error.message}</h1>
-			)}
-			<Spinner animation="grow" size="sm" />
-		</MainBody>
-	);
+  return (
+    <MainBody>
+      {loading ? (
+        <Spinner animation="border" />
+      ) : !error ? (
+        <section>
+          <MainPage name={data.users[0].name} />
+          <FriendsSection ID={id} />
+        </section>
+      ) : (
+        <h1> ERROR - {error.message}</h1>
+      )}
+      <Spinner animation="grow" size="sm" />
+    </MainBody>
+  );
 };
