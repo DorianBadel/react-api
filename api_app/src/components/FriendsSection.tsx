@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
-import React from "react";
-import { ListOfFriends, ThisUser } from "../api/queries";
+import { ListOfFriends /*ThisUser*/ } from "../api/queries";
+import "./css/FriendsSection.css";
 
 type Friend = {
 	nickname: string;
@@ -98,23 +98,22 @@ function FriendsSection({ ID }: { ID: number }) {
 
 	return (
 		<div>
-			<h3>Friends ... {today.toString()}</h3>
 			{loading ? (
 				<p>loading...</p>
 			) : error ? (
 				<span className="error"> ERROR - {error.message} </span>
 			) : (
-				<div className="friendBDCardContainer">
+				<div className="friends_container">
 					{SortDates().map((fr: Friend) => (
-						<div key={fr.friend.ID} className="friendBDCard">
-							<span className="Name">
+						<div key={fr.friend.ID} className="friends_card">
+							<span className="friends_card__name">
 								{fr.nickname ? fr.nickname : fr.friend.name}
 							</span>
-							<p>
-								<span className="Age">{getAge(fr.friend.ID)}</span>
-								{/*{fr.friend.date_of_birth.split("-")[0]}{" "}*/}
-								<span className="Date">{getYear(fr.friend.ID)}</span>
-							</p>
+							<span className="friends_card__age">{getAge(fr.friend.ID)}</span>
+							{/*{fr.friend.date_of_birth.split("-")[0]}{" "}*/}
+							<span className="friends_card__date">
+								{getYear(fr.friend.ID)}
+							</span>
 						</div>
 					))}
 				</div>
