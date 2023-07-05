@@ -32,11 +32,6 @@
     transition: 1s all;
     padding-bottom: 5px;
 
-    @media (min-width: 768px) {
-      width: 50%;
-      height: 50vh;
-    }
-
     &:hover {
       cursor: pointer;
       box-shadow: -10px -10px #5aaceb;

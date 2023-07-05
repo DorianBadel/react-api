@@ -11,10 +11,6 @@
     background-color: g.$color-tertiary;
     border-radius: 0.5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    @media (min-width: 768px) {
-      width: 50%;
-      height: 50vh;
-    }
   }
 
   &_text {
@@ -26,9 +22,6 @@
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     line-height: 1.5;
-    @media (min-width: 768px) {
-      font-size: 2rem;
-    }
 
     &__user-name {
       color: g.$color-primary;

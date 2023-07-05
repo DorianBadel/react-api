@@ -26,12 +26,6 @@
   transition: 1s all;
   padding-bottom: 5px;
 }
-@media (min-width: 768px) {
-  .friends_card {
-    width: 50%;
-    height: 50vh;
-  }
-}
 .friends_card:hover {
   cursor: pointer;
   box-shadow: -10px -10px #5aaceb;
