@@ -5,7 +5,7 @@ import FriendsSection from "../../components/FriendsSection";
 import { ThisUser } from "../../api/queries";
 import MainBody from "../../components/MainBody";
 
-let id = 7;
+const id = 7;
 export const Page = () => {
   const { loading, data, error } = useQuery(ThisUser(id));
 
