@@ -1,0 +1,24 @@
+# Node.js and npm
+node_modules/
+
+# Vite configuration
+vite.config.js
+vite-cache
+
+# SCSS files and compiled CSS
+src/**/*.scss
+src/**/*.css
+dist/**/*.css
+
+# Yarn and npm artifacts
+yarn.lock
+package-lock.json
+
+# IDE and editor files
+*.iml
+*.suo
+*.vscode/
+
+# Other files and directories
+.DS_Store
+Thumbs.db
