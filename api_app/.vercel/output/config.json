@@ -1,9 +1,3 @@
 {
-  "version": 3,
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ]
+  "version": 3
 }
