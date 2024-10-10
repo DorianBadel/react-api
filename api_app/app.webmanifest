@@ -2,7 +2,7 @@
   "id": "/",
   "name": "React_api",
   "short_name": "GHB",
-  "display": "standalone",
+  "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
   "theme_color": "cyan",
