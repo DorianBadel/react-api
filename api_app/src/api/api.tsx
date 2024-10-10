@@ -8,7 +8,7 @@ const authMiddleware = new ApolloLink((operation, forward) => {
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      "x-hasura-admin-secret": "toJYeHHUbn2AoWAanM6duuJBmGcunDU3aLrT84ubUTOQXwu2TA2eZLEd5ZYaeflq" || null,
+      "x-hasura-admin-secret": "toJYeHHUbn2AoWAanM6duuJBmGcunDU3aLrT84ubUTOQXwu2TA2eZLEd5ZYaeflq",
     }
   }));
 
