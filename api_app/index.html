@@ -9,7 +9,8 @@
     </script>
     <script>
       navigator.serviceWorker.register('/service-worker.js', {
-        type: 'module'
+        type: 'module',
+        scope: '/'
       });
     </script>
   </body>
