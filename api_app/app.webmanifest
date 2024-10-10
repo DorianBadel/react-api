@@ -13,5 +13,21 @@
       "sizes": "144x144",
       "type": "image/png"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src":"./assets/screenshot.png",
+      "sizes":"2929x1986",
+      "type":"image/png",
+      "label": "Screenshot of the main interface",
+      "form_factor": "wide"
+    },
+    {
+      "src":"./assets/screenshot_mobile.png",
+      "sizes":"873x1765",
+      "type":"image/png",
+      "label": "Screenshot of the main interface - mobile"
+    }
+  ],
+  "categories": ["utilities", "productivity"]
 }
