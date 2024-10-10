@@ -2,9 +2,15 @@
 <html lang="en">
   <link rel="manifest" href="app.webmanifest" />
   <link rel="icon" href="./assets/pwa_logo.png" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, viewport-fit=cover" />
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx">
+    </script>
+    <script>
+      navigator.serviceWorker.register('/service-worker.js', {
+        type: 'module'
+      });
+    </script>
   </body>
 </html>

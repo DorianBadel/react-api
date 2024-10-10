@@ -5,7 +5,7 @@
   "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
-  "theme_color": "cyan",
+  "theme_color": "darkblue",
   "background_color": "white",
   "icons": [
     {
