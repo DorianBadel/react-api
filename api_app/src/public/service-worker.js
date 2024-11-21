@@ -1,3 +1,5 @@
+console.log("Herrooo from service workor");
+
 if (Notification.permission != "granted") {
   Notification.requestPermission();
 }
