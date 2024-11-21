@@ -1,69 +1,75 @@
 import { useReducer, createContext } from "react";
 import jwtDecode from "jwt-decode";
+// This needs a rewrite
+interface DecodedToken {
+  exp: number;
+  user: string | null;
+}
 
-const initialState = {
-	user: null,
+const initialState: DecodedToken = {
+  user: null,
+  exp: Infinity,
 };
 
 if (localStorage.getItem("token")) {
-	const token: string = localStorage.getItem("token")!;
-	const decodedToken: any = jwtDecode(token);
-	//! is added
+  const token: string | null = localStorage.getItem("token");
+  const decodedToken: DecodedToken = jwtDecode(token ?? "");
+  console.log(decodedToken);
 
-	if (decodedToken.exp * 1000 < Date.now()) {
-		localStorage.removeItem("token");
-	} else {
-		initialState.user = decodedToken;
-	}
+  if (decodedToken.exp * 1000 < Date.now()) {
+    localStorage.removeItem("token");
+  } else {
+    initialState.user = decodedToken;
+  }
 }
 
 const AuthContext = createContext({
-	user: null,
-	login: (/*userData: any*/) => {},
-	logout: () => {},
+  user: null,
+  login: (/*userData: any*/) => {},
+  logout: () => {},
 });
 
 function authReducer(state: any, action: any) {
-	switch (action.type) {
-		case "LOGIN":
-			return {
-				...state,
-				user: action.payload,
-			};
-		case "LOGOUT":
-			return {
-				...state,
-				user: null,
-			};
-		default:
-			return state;
-	}
+  switch (action.type) {
+    case "LOGIN":
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        user: null,
+      };
+    default:
+      return state;
+  }
 }
 
 function AuthProvider(props: any) {
-	const [state, dispatch] = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
-	const login = (userData: any) => {
-		localStorage.setItem("token", userData.token);
-		dispatch({
-			type: "LOGIN",
-			payload: userData,
-		});
-	};
+  const login = (userData: any) => {
+    localStorage.setItem("token", userData.token);
+    dispatch({
+      type: "LOGIN",
+      payload: userData,
+    });
+  };
 
-	function logout() {
-		localStorage.removeItem("token");
-		dispatch({
-			type: "LOGOUT",
-		});
-	}
+  function logout() {
+    localStorage.removeItem("token");
+    dispatch({
+      type: "LOGOUT",
+    });
+  }
 
-	return (
-		<AuthContext.Provider
-			value={{ user: state.user, login, logout }}
-			{...props}
-		/>
-	);
+  return (
+    <AuthContext.Provider
+      value={{ user: state.user, login, logout }}
+      {...props}
+    />
+  );
 }
 
 export { AuthContext, AuthProvider };
