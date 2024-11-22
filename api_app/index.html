@@ -8,10 +8,21 @@
     <script type="module" src="/src/main.tsx">
     </script>
     <script>
-      navigator.serviceWorker.register('/service-worker.js', {
-        type: 'module',
-        scope: '/'
-      });
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', async () => {
+          try {
+            const registration = await navigator.serviceWorker.register(
+              '/service-worker.js',
+              {
+                scope: '/',
+              }
+            );
+            console.log('ServiceWorker registration successful:', registration);
+          } catch (error) {
+            console.error('ServiceWorker registration failed:', error);
+          }
+        });
+      }
     </script>
   </body>
 </html>
