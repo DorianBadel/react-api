@@ -65,6 +65,27 @@ export const Brutus = gql`
 		user(id: ID!): User
 	}
 `;
+
+export const CREATE_USER = gql`
+  mutation CreateUser($name: String = "", $date_of_birth: date = "", $UID: Int = 7) {
+    insert_users(objects: {date_of_birth: $date_of_birth, name: $name}) {
+      returning {
+        ID
+      }
+    }
+  }
+`;
+
+export const CREATE_FRIEND = gql`
+  mutation CreateFriend($UID: Int = 7, $FID: Int = 7, $nickname: String = NULL) {
+    insert_friends(objects: {UID: $UID, FID: $FID, nickname: $nickname}) {
+      returning {
+        ID
+      }
+    }
+  }
+`;
+
 {
 	/*
 
