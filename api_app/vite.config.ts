@@ -35,5 +35,8 @@ resolve: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ['@shadcn/ui'],
+  },
 })
 
