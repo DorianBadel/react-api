@@ -1,67 +1,52 @@
-import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ModeToggle } from "./ThemeToggle";
 
-import "./nav.css";
+type NavigationItem = {
+  name: string;
+  link: string;
+};
+
+const navigationItems: NavigationItem[] = [
+  {
+    name: "Home",
+    link: "/",
+  },
+  {
+    name: "Profile",
+    link: "/profile",
+  },
+];
 
 function Navigation() {
-	const [isToggled, setIsToggled] = useState(false);
-	function toggle() {
-		setIsToggled((t) => !t);
-	}
-	return (
-		<nav>
-			<div className="nav-center">
-				<div className="nav-header">
-					<Link to="/"></Link>
-					<button className="nav-toggle" onClick={toggle}>
-						x<i className="fas fa-bars"></i>
-					</button>
-				</div>
-
-				<ul className={isToggled ? "links show-links" : "links"}>
-					<li>
-						<Link to="/">Home</Link>
-					</li>
-					<li>
-						<a href="about.html">about</a>
-					</li>
-					<li>
-						<NavLink to="/register">Register</NavLink>
-					</li>
-					<li>
-						<NavLink to="/login">Login</NavLink>
-					</li>
-				</ul>
-				<ul className="social-icons">
-					<li>
-						<a href="https://www.twitter.com">
-							<i className="fab fa-facebook"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com">
-							<i className="fab fa-twitter"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com">
-							<i className="fab fa-behance"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com">
-							<i className="fab fa-linkedin"></i>
-						</a>
-					</li>
-					<li>
-						<a href="https://www.twitter.com">
-							<i className="fab fa-sketch"></i>
-						</a>
-					</li>
-				</ul>
-			</div>
-		</nav>
-	);
+  return (
+    <div className="flex justify-between items-center w-full px-4">
+      <div className="flex">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <ToggleGroup type="single" defaultValue="Home">
+              {navigationItems.map((item) => (
+                <ToggleGroupItem value={item.name} key={item.name}>
+                  <NavigationMenuItem key={item.name}>
+                    <NavLink to={item.link}>
+                      <NavigationMenuLink>{item.name}</NavigationMenuLink>
+                    </NavLink>
+                  </NavigationMenuItem>
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+      <ModeToggle />
+    </div>
+  );
 }
 
 export default Navigation;

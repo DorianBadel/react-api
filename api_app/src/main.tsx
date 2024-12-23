@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./api/api";
+import { ThemeProvider } from "./components/theme-provider";
 
 const rootElement = document.getElementById("root");
 if (!rootElement) throw new Error("Failed to find the root element");
@@ -13,7 +14,9 @@ const root = createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </ApolloProvider>
   </React.StrictMode>
 );
