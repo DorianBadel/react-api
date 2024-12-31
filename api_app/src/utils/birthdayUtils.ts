@@ -1,10 +1,25 @@
-export function getBirthdaysByMonth(data: any) {
+type User = {
+  date_of_birth: string;
+};
+
+type Friend = {
+  friend: {
+    date_of_birth: string;
+  }
+};
+
+type BirthdaysByMonth = {
+  friends: Friend[];
+  users: User[];
+};
+
+export function getBirthdaysByMonth(data: BirthdaysByMonth) {
   const monthNames = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
 
-  const birthdaysCount = new Array(12).fill(0);
+  const birthdaysCount: number[] = new Array(12).fill(0);
 
   // Count birthdays from friends
   data.friends.forEach((friend: any) => {

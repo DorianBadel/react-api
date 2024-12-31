@@ -1,7 +1,6 @@
 import "./css/MainPage.css";
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -80,13 +79,17 @@ export function BirthdaysChart() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-
+  console.log("BIRTHDAYS BY MONTH:", birthdaysByMonth);
   const data = getBirthdaysByMonth(birthdaysByMonth);
   const activeIndex = new Date().getMonth();
+  console.log("DATA:", data);
 
   return (
-    <ChartContainer config={chartConfig}>
-      <BarChart accessibilityLayer data={data}>
+    <ChartContainer
+      config={chartConfig}
+      className="max-h-[400px] sm:float-right sm:min-h-[50px]l min-h-[50px] flex justify-center grow p-10"
+    >
+      <BarChart accessibilityLayer data={data} width={500} height={300}>
         <CartesianGrid vertical={false} />
         <XAxis
           dataKey="month"
@@ -128,16 +131,14 @@ import React from "react";
 const MainPage: React.FC<{ name: string }> = ({ name }) => {
   return (
     <div className="w-full p-4">
-      <Card className="flex flex-row">
+      <Card className="flex flex-row  w-full flex-1 px-10">
         <CardHeader>
           <CardTitle>Welcome {name}</CardTitle>
           <CardDescription>
             Your birthday list is waiting for you
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <BirthdaysChart />
-        </CardContent>
+        <BirthdaysChart />
       </Card>
     </div>
   );
