@@ -1,6 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { ListOfFriends /*ThisUser*/ } from "../api/queries";
 import "./css/FriendsSection.css";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 
 type Friend = {
   nickname: string;
@@ -105,18 +106,38 @@ function FriendsSection({ ID }: { ID: number }) {
       ) : error ? (
         <span className="error"> ERROR - {error.message} </span>
       ) : (
-        <div className="friends_container">
+        // ) : (
+        //   <div className="friends_container">
+        //     {SortDates().map((fr: Friend) => (
+        //       <div key={fr.friend.ID} className="friends_card">
+        //         <span className="friends_card__name">
+        //           {fr.nickname ? fr.nickname : fr.friend.name}
+        //         </span>
+        //         <span className="friends_card__age">{getAge(fr.friend.ID)}</span>
+        //         {/*{fr.friend.date_of_birth.split("-")[0]}{" "}*/}
+        //         <span className="friends_card__date">
+        //           {getYear(fr.friend.ID)}
+        //         </span>
+        //       </div>
+        //     ))}
+        //   </div>
+        // )}
+        <div className="flex flex-wrap gap-4 items-center w-full px-[15%]">
           {SortDates().map((fr: Friend) => (
-            <div key={fr.friend.ID} className="friends_card">
-              <span className="friends_card__name">
-                {fr.nickname ? fr.nickname : fr.friend.name}
-              </span>
-              <span className="friends_card__age">{getAge(fr.friend.ID)}</span>
-              {/*{fr.friend.date_of_birth.split("-")[0]}{" "}*/}
-              <span className="friends_card__date">
-                {getYear(fr.friend.ID)}
-              </span>
-            </div>
+            <Card
+              key={fr.friend.ID}
+              className="flex-grow flex-row flex justify-between align-middle"
+            >
+              <CardHeader>
+                <CardTitle>
+                  {fr.nickname ? fr.nickname : fr.friend.name}
+                </CardTitle>
+                <span>{getYear(fr.friend.ID)}</span>
+              </CardHeader>
+              <CardContent className="flex items-center justify-center text-center">
+                <span className="text-2xl">{getAge(fr.friend.ID)}</span>
+              </CardContent>
+            </Card>
           ))}
         </div>
       )}
