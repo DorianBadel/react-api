@@ -26,7 +26,7 @@ const navigationItems: NavigationItem[] = [
 
 function Navigation() {
   return (
-    <div className="flex justify-between items-center w-full px-4">
+    <div className="flex justify-between items-center w-full p-4">
       <div className="flex">
         <NavigationMenu>
           <NavigationMenuList>

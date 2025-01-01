@@ -14,7 +14,7 @@ export const Page = () => {
       {loading ? (
         <div> loading . . .</div>
       ) : !error ? (
-        <section>
+        <section className="pb-10">
           <MainPage name={data.users[0].name} />
           <FriendsSection ID={ID} />
           <AddBirthday />

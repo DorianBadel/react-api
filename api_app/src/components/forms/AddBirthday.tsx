@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -65,7 +66,7 @@ const AddBirthday: React.FC = () => {
           size="icon"
           className="fixed bottom-4 right-4 rounded-full p-2 text-2xl shadow-lg"
         >
-          +
+          <Plus />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

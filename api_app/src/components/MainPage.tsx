@@ -19,57 +19,48 @@ import { BIRTHDAYS_BY_MONTH } from "@/api/queries";
 import { getBirthdaysByMonth } from "@/utils/birthdayUtils";
 
 const chartConfig = {
+  amount: {
+    label: "Birthdays",
+  },
   January: {
     label: "January",
-    color: "hsl(var(--chart-1))",
   },
   February: {
     label: "February",
-    color: "hsl(var(--chart-2))",
   },
   March: {
     label: "March",
-    color: "hsl(var(--chart-3))",
   },
   April: {
     label: "April",
-    color: "hsl(var(--chart-4))",
   },
   May: {
     label: "May",
-    color: "hsl(var(--chart-5))",
   },
   June: {
     label: "June",
-    color: "hsl(var(--chart-6))",
   },
   July: {
     label: "July",
-    color: "hsl(var(--chart-7))",
   },
   August: {
     label: "August",
-    color: "hsl(var(--chart-8))",
   },
   September: {
     label: "September",
-    color: "hsl(var(--chart-9))",
   },
   October: {
     label: "October",
-    color: "hsl(var(--chart-10))",
   },
   November: {
     label: "November",
-    color: "hsl(var(--chart-11))",
   },
   December: {
     label: "December",
-    color: "hsl(var(--chart-12))",
   },
 } satisfies ChartConfig;
 
-export function BirthdaysChart() {
+function BirthdaysChart() {
   // Fetch actual data from DB
   const {
     data: birthdaysByMonth,
@@ -102,7 +93,7 @@ export function BirthdaysChart() {
         />
         <ChartTooltip
           cursor={false}
-          content={<ChartTooltipContent hideLabel />}
+          content={<ChartTooltipContent indicator="dashed" />}
         />
         <Bar
           dataKey="amount"
@@ -110,15 +101,7 @@ export function BirthdaysChart() {
           radius={8}
           activeIndex={activeIndex}
           activeBar={({ ...props }) => {
-            return (
-              <Rectangle
-                {...props}
-                fillOpacity={0.7}
-                stroke={props.payload.fill}
-                strokeDasharray={4}
-                strokeDashoffset={4}
-              />
-            );
+            return <Rectangle {...props} fillOpacity={0.4} />;
           }}
         />
       </BarChart>

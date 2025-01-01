@@ -36,6 +36,7 @@ export function getBirthdaysByMonth(data: BirthdaysByMonth) {
 
   return monthNames.map((month, index) => ({
     month,
-    amount: birthdaysCount[index]
+    amount: birthdaysCount[index],
+    fill: "hsl(var(--chart-1))"
   }));
 }

@@ -35,7 +35,10 @@ function FriendsSection({ ID }: { ID: number }) {
       return obj.friend.ID === id;
     });
 
-    return db.friend.date_of_birth;
+    const dateParts = db.friend.date_of_birth.split("-");
+    const formattedDate = `${dateParts[2]}. ${dateParts[1]}. ${dateParts[0]}.`;
+
+    return formattedDate;
   }
 
   function compareDates(
@@ -126,7 +129,7 @@ function FriendsSection({ ID }: { ID: number }) {
           {SortDates().map((fr: Friend) => (
             <Card
               key={fr.friend.ID}
-              className="flex-grow flex-row flex justify-between align-middle"
+              className="flex-grow flex-row flex justify-between align-middle transition-transform transform hover:scale-105"
             >
               <CardHeader>
                 <CardTitle>
