@@ -52,8 +52,8 @@ export function DatePickerForm({
                 captionLayout="dropdown-buttons"
                 selected={field.value}
                 onSelect={field.onChange}
-                fromYear={1960}
-                toYear={2030}
+                fromYear={1900}
+                toYear={2010}
               />
             </PopoverContent>
           </Popover>

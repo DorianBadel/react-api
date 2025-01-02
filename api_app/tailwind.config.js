@@ -1,7 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
-  content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    // Add any other paths where your components are located
+  ],
   theme: {
     extend: {
       borderRadius: {
@@ -54,4 +57,5 @@ export default {
     },
   },
   plugins: [require("tailwindcss-animate")],
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
 };
