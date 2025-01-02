@@ -5,6 +5,7 @@ import { ThisUser } from "../../api/queries";
 import MainBody from "../../components/MainBody";
 import { ID } from "@/global/variables";
 import AddBirthday from "@/components/forms/AddBirthday";
+import { Toaster } from "sonner";
 
 export const Page = () => {
   const { loading, data, error } = useQuery(ThisUser(ID));
@@ -22,6 +23,7 @@ export const Page = () => {
       ) : (
         <h1> ERROR - {error.message}</h1>
       )}
+      <Toaster />
     </MainBody>
   );
 };

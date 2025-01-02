@@ -114,7 +114,7 @@ import React from "react";
 const MainPage: React.FC<{ name: string }> = ({ name }) => {
   return (
     <div className="w-full p-4">
-      <Card className="flex flex-row  w-full flex-1 px-10">
+      <Card className="flex flex-col sm:flex-row w-full flex-1 px-10 justify-between">
         <CardHeader>
           <CardTitle>Welcome {name}</CardTitle>
           <CardDescription>
